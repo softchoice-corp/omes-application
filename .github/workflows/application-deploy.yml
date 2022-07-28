@@ -8,12 +8,12 @@ on:
     types:
       - completed
 jobs:
-  publish:
+  deploy_dev:
     runs-on: 'ubuntu-20.04'
     environment: 'dev'
     steps:
       # - uses: actions/checkout@v3
-      - name: Application Deploy
+      - name: Application Deploy (DEV)
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.VM_HOSTS }}
@@ -21,5 +21,49 @@ jobs:
           password: ${{ secrets.VM_PASSWORD }}
           port: 22
           script: |
-            whoami
-            echo hello
+            rm -rf ~/application
+            mkdir ~/application
+
+            bash -c "cat > ~/application/.npmrc" <<EOF
+            @softchoice-corp:registry=https://npm.pkg.github.com
+            EOF
+
+            pushd ~/application
+            npm install @softchoice-corp/omes-application
+            popd
+
+            pushd ~/application/node_modules/@softchoice-corp/omes-application
+
+            sudo pkill -P $(ps -ef | grep node\ ./src/index.js | head -1 | awk '{print $2}')
+            nohup npm run start > /dev/null 2>&1 &
+            popd
+  deploy_prod:
+    runs-on: 'ubuntu-20.04'
+    environment: 'prod'
+    needs: 'deploy_dev'
+    steps:
+      # - uses: actions/checkout@v3
+      - name: Application Deploy (PROD)
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VM_HOSTS }}
+          username: azureuser
+          password: ${{ secrets.VM_PASSWORD }}
+          port: 22
+          script: |
+            rm -rf ~/application
+            mkdir ~/application
+
+            bash -c "cat > ~/application/.npmrc" <<EOF
+            @softchoice-corp:registry=https://npm.pkg.github.com
+            EOF
+
+            pushd ~/application
+            npm install @softchoice-corp/omes-application
+            popd
+
+            pushd ~/application/node_modules/@softchoice-corp/omes-application
+
+            sudo pkill -P $(ps -ef | grep node\ ./src/index.js | head -1 | awk '{print $2}')
+            nohup npm run start > /dev/null 2>&1 &
+            popd
