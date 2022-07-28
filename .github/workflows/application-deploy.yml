@@ -34,6 +34,5 @@ jobs:
 
             pushd ~/application/node_modules/@softchoice-corp/omes-application
             sudo pkill -P $(ps -ef | grep node\ ./src/index.js | head -1 | awk '{print $2}')
-            nohup npm run start &
+            nohup npm run start < /dev/null & > /dev/null &
             popd
-  
