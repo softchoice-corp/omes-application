@@ -23,6 +23,7 @@ jobs:
         id: pkg
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          increment: minor
       - name: Print Version
         run: echo "Bumped to version ${{ steps.pkg.outputs.version }}"
       - run: npm publish
