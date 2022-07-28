@@ -25,7 +25,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           increment: minor
           changelog: false
-          commitizen_version: 2.20.5
+          commitizen_version: 2.29.1
       - name: Print Version
         run: echo "Bumped to version ${{ steps.pkg.outputs.version }}"
       - run: npm publish
