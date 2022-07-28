@@ -1,4 +1,4 @@
-name: 'Application Test'
+name: 'Application Build'
 on:
   workflow_dispatch:
   push:
