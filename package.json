@@ -1,5 +1,9 @@
 {
-  "name": "sample-application",
+  "name": "@softchoice-corp/omes-application",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/softchoice-corp/omes-application.git"
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
