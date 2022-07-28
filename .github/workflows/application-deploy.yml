@@ -34,15 +34,6 @@ jobs:
 
             pushd ~/application/node_modules/@softchoice-corp/omes-application
 
-            # bash -c "cat > ./start.sh" <<EOF
-            # #!/bin/bash
-            # sudo pkill -P $(ps -ef | grep node\ ./src/index.js | head -1 | awk '{print $2}')
-            # nohup npm run start  > /dev/null 2>&1 &
-            # EOF
-
-            # chmod u+x ./start.sh
-            # ./start.sh
-
             sudo pkill -P $(ps -ef | grep node\ ./src/index.js | head -1 | awk '{print $2}')
-            nohup npm run start  > /dev/null 2>&1 &
+            nohup npm run start > /dev/null 2>&1 &
             popd
