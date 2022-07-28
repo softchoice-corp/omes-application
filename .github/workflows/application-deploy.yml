@@ -8,7 +8,7 @@ on:
     types:
       - completed
 jobs:
-  publish:
+  deploy:
     runs-on: 'ubuntu-20.04'
     environment: 'dev'
     steps:
@@ -34,5 +34,7 @@ jobs:
 
             pushd ~/application/node_modules/@softchoice-corp/omes-application
             sudo pkill -P $(ps -ef | grep node\ ./src/index.js | head -1 | awk '{print $2}')
-            nohup npm run start &
+            nohup npm run start & 
             popd
+
+            exit
