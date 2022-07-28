@@ -1,4 +1,5 @@
 [tool.commitizen]
+name = "cz_conventional_commits"
 version = "1.3.0"  # This should be your current semver version
 version_files = [
   "package.json:version",
