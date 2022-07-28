@@ -24,17 +24,15 @@ jobs:
             rm -rf ~/application
             mkdir ~/application
 
-            bash -c "cat > /home/${HOME_USER}/application/.npmrc" <<EOF
+            bash -c "cat > ~/application/.npmrc" <<EOF
             @softchoice-corp:registry=https://npm.pkg.github.com
             EOF
 
-            sudo chown -R ${HOME_USER}:${HOME_USER} /home/${HOME_USER}/application
-
-            pushd /home/${HOME_USER}/application
+            pushd ~/application
             npm install @softchoice-corp/omes-application
             popd
 
-            pushd /home/${HOME_USER}/application/node_modules/@softchoice-corp/omes-application
+            pushd ~/application/node_modules/@softchoice-corp/omes-application
             sudo pkill -P $(ps -ef | grep node\ ./src/index.js | head -1 | awk '{print $2}')
             nohup npm run start &
             popd
