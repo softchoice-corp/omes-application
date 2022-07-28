@@ -18,16 +18,7 @@ jobs:
           node-version: '18.x'
           registry-url: 'https://npm.pkg.github.com'
           scope: 'softchoice-corp'
-      - name: Bump package
-        uses: commitizen-tools/commitizen-action@master
-        id: pkg
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          increment: minor
-          changelog: false
-          commitizen_version: 2.29.1
-      - name: Print Version
-        run: echo "Bumped to version ${{ steps.pkg.outputs.version }}"
-      - run: npm publish
+      - name: Application Publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
