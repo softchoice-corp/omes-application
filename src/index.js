@@ -3,6 +3,7 @@ const port = process.env.PORT || 3000;
 
 // Current date 
 var now = new Date();
+var now = new Date();
 var start = new Date(now.getFullYear(), 0, 0);
 var diff = now - start;
 var oneDay = 1000 * 60 * 60 * 24;
@@ -20,6 +21,3 @@ const server = http.createServer((req, res) => {
 server.listen(port, () => {
   console.log(`Server running on http://localhost:${port}/`);
 });
-
-var hello goodbye
-var now 
