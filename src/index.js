@@ -13,7 +13,7 @@ var result = mathOperations.sum(day,7)
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
-  const msg = ('This is a sample NodeJS application for OMES!!!!!!!\nThe application adds 7 days to the current day of the year - ' + day + '.\n\n' + day + '+7=' + result)
+  const msg = ('This is a sample NodeJS application.\nThe application adds 7 days to the current day of the year - ' + day + '.\n\n' + day + '+7=' + result)
   res.end(msg);
 });
 
