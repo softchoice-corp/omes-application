@@ -1,7 +1,7 @@
 const http = require('http');
 const port = process.env.PORT || 3000;
 
-// Current date
+// Current date 
 var now = new Date();
 var start = new Date(now.getFullYear(), 0, 0);
 var diff = now - start;
