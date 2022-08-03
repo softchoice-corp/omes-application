@@ -1,5 +1,6 @@
 const http = require('http');
 const port = process.env.PORT || 3000;
+var mysql = require('mysql');
 
 // Current date 
 var now = new Date();
@@ -20,3 +21,16 @@ const server = http.createServer((req, res) => {
 server.listen(port, () => {
   console.log(`Server running on http://localhost:${port}/`);
 });
+
+
+
+var connection = mysql.createConnection(
+{
+  host:'localhost',
+  user: "admin",
+  database: "project",
+  password: "mypassword", // sensitive
+  multipleStatements: true
+});
+
+connection.connect();
