@@ -1,5 +1,6 @@
 const http = require('http');
 const port = process.env.PORT || 3000;
+var mysql = require('mysql');
 
 // Current date 
 var now = new Date();
@@ -13,10 +14,21 @@ var result = mathOperations.sum(day,7)
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
-  const msg = ('This is a sample NodeJS application for OMES.\nThe application adds 7 days to the current day of the year - ' + day + '.\n\n' + day + '+7=' + result)
+  const msg = ('This is a sample NodeJS application.\nThe application adds 7 days to the current day of the year - ' + day + '.\n\n' + day + '+7=' + result)
   res.end(msg);
 });
 
 server.listen(port, () => {
   console.log(`Server running on http://localhost:${port}/`);
 });
+
+var connection = mysql.createConnection(
+{
+  host:'localhost',
+  user: "admin",
+  database: "project",
+  password: "mypassword", // sensitive
+  multipleStatements: true
+});
+
+connection.connect();
